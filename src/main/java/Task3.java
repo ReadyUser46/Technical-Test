@@ -10,7 +10,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Tarea3 {
+public class Task3 {
 
     public static void main(String[] args) throws IOException {
 

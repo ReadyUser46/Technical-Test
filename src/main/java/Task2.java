@@ -1,4 +1,5 @@
 import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.Point;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import ru.yandex.qatools.ashot.AShot;
@@ -14,8 +15,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.regex.Pattern;
 
-public class MainClass {
+public class Task2 {
 
     public static void main(String[] args) throws InterruptedException {
 
@@ -28,7 +30,9 @@ public class MainClass {
 
         // init browser
         WebDriver googleDriver = new ChromeDriver();
-        googleDriver.manage().window().maximize();
+        //googleDriver.manage().window().maximize();
+        googleDriver.manage().window().setPosition(new Point(-2000, 0));
+
 
         // Search query
         onSearchQuery(googleDriver, browserURL, queryString);
@@ -40,10 +44,10 @@ public class MainClass {
         //onTakeFullScreenShoot(googleDriver, screenShootPath);
 
         // Wiki
-        //wikiResult(googleDriver);
+        wikiResult2(googleDriver);
 
         // close browser
-        //googleDriver.close();
+        googleDriver.close();
 
 
     }
@@ -148,13 +152,29 @@ public class MainClass {
         }
     }
 
-    private static void wikiResult2(WebDriver driver){
+    private static void wikiResult2(WebDriver driver) {
 
-        String xpath = "//div[@id=\"mw-content-text\"]/p";
+        // wiki vars
+        List<String> headersList = new ArrayList<>();
+        List<String> paragraphList = new ArrayList<>();
+
+        String xpath = "//div[@id=\"mw-content-text\"]//*";
         List<WebElement> webElements = driver.findElements(By.xpath(xpath));
-
-        for (WebElement we : webElements){
-            System.out.println(we);
+        for (WebElement we : webElements) {
+            if (we.getTagName().equals("h3"))
+                headersList.add(we.findElement(By.cssSelector("span.mw-headline")).getText());
+            else if (we.getTagName().equals("p")) paragraphList.add(we.getText());
         }
+
+        System.out.println("Headers");
+        System.out.println(headersList);
+        System.out.println("------------------");
+
+        String regex = ".*\\b" + Pattern.quote("año") + "\\b.*";
+        for (String str : paragraphList) {
+            if (str.contains("1960")) System.out.println(str);
+            else if (str.contains("automático") && str.contains("1801")) System.out.println(str);
+        }
+
     }
 }
