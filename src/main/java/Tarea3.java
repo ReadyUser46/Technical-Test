@@ -28,16 +28,19 @@ public class Tarea3 {
 
             // Get respone body
             String responseString = response.body().string();
-            System.out.println("Response code: " + response.code());
+            System.out.println("\nResponse (json): " + responseString);
             System.out.println(responseString);
 
             List<Pet> petList = deserializeResponse(responseString);
-            Map<Integer, String> petMapTask3 = onCreateHastMapFromPetList(petList);
+            Map<Long, String> petMapTask3 = onCreateHastMapFromPetList(petList);
 
             // Task3.2 --> List sold pet names with format {id, name} by using a HashMap object
-            System.out.println("\n\nDumping hashMap objects... \n");
+            System.out.println("\nDumping hashMap objects for sold pets --> (id, name) ");
+            System.out.println(petMapTask3);
+            System.out.println("\n" +
+                    "Beauty hashmap output:");
             for (Map.Entry m : petMapTask3.entrySet()) {
-                System.out.println(String.format("{%s , %s}", m.getKey(), m.getValue()));
+                System.out.println(String.format("{id: %s , name: %s}", m.getKey(), m.getValue()));
             }
 
             // Task3.3 --> List sold pet names with format {id, name} by using a HashMap object
@@ -77,7 +80,7 @@ public class Tarea3 {
 
     private static Request onGetPetFindByStatus(String baseUrl, String status) {
 
-        System.out.println("\n\nFinding pets by status: " + status);
+        System.out.println("\nFinding pets by status: " + status);
 
         HttpUrl url = new HttpUrl.Builder()
                 .scheme("https")
@@ -103,8 +106,8 @@ public class Tarea3 {
         return gson.fromJson(respose, petType);
     }
 
-    private static Map<Integer, String> onCreateHastMapFromPetList(List<Pet> petList) {
-        Map<Integer, String> task3Map = new LinkedHashMap<>();
+    private static Map<Long, String> onCreateHastMapFromPetList(List<Pet> petList) {
+        Map<Long, String> task3Map = new LinkedHashMap<>();
 
         for (Pet pet : petList) {
             task3Map.put(pet.getPetId(), pet.getPetName());

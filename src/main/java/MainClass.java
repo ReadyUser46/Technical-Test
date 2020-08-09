@@ -34,10 +34,10 @@ public class MainClass {
         onSearchQuery(googleDriver, browserURL, queryString);
 
         // Viewable area Screenshot
-        onTakeViewAreaScreenShoot(googleDriver, screenShootPath);
+        //onTakeViewAreaScreenShoot(googleDriver, screenShootPath);
 
         // Full page Screenshot
-        onTakeFullScreenShoot(googleDriver, screenShootPath);
+        //onTakeFullScreenShoot(googleDriver, screenShootPath);
 
         // Wiki
         //wikiResult(googleDriver);
@@ -46,6 +46,31 @@ public class MainClass {
         //googleDriver.close();
 
 
+    }
+
+    private static void onSearchQuery(WebDriver driver, String browserURL, String queryText) {
+
+        // open browser
+        driver.get(browserURL);
+
+        // google searchBox
+        WebElement searchBox = driver.findElement(By.name("q"));
+        searchBox.clear();
+        searchBox.sendKeys(queryText);
+        searchBox.submit();
+
+        // get wiki result
+        String xpath = "//div[@class=\"g\"]//div[@class=\"r\"]//a[starts-with(@href,\"https://es.wikipedia.org/wiki/\")]";
+        driver.findElement(By.xpath(xpath)).click();
+
+        /*// Method linkText
+        try {
+            googleDriver.findElement(By.linkText("Wikipedia")).click();
+        } catch (Exception e) {
+            e.printStackTrace();
+            googleDriver.close();
+            System.exit(0);
+        }*/
     }
 
     private static File createFileFromPath(String path, String scType) {
@@ -123,32 +148,13 @@ public class MainClass {
         }
     }
 
-    private static void onSearchQuery(WebDriver driver, String browserURL, String queryText) {
+    private static void wikiResult2(WebDriver driver){
 
+        String xpath = "//div[@id=\"mw-content-text\"]/p";
+        List<WebElement> webElements = driver.findElements(By.xpath(xpath));
 
-        // open browser
-        driver.get(browserURL);
-
-        // google searchBox
-        WebElement searchBox = driver.findElement(By.name("q"));
-        searchBox.clear();
-        searchBox.sendKeys(queryText);
-        searchBox.submit();
-
-        // get wiki result
-        String xpath = "//div[@class=\"g\"]//div[@class=\"r\"]//a[starts-with(@href,\"https://es.wikipedia.org/wiki/\")]";
-        driver.findElement(By.xpath(xpath)).click();
-        /*WebElement wikiResult = googleDriver.findElement(By.xpath(xpath));
-        wikiResult.getAttribute("href");
-        wikiResult.click();
-
-        // Method linkText
-        try {
-            googleDriver.findElement(By.linkText("Wikipedia")).click();
-        } catch (Exception e) {
-            e.printStackTrace();
-            googleDriver.close();
-            System.exit(0);
-        }*/
+        for (WebElement we : webElements){
+            System.out.println(we);
+        }
     }
 }

@@ -9,7 +9,7 @@ public class Pet {
 
     @SerializedName("id")
     @Expose
-    private int petId;
+    private long petId;
     @SerializedName("category")
     @Expose
     private Category petCategory;
@@ -35,7 +35,7 @@ public class Pet {
         this.petStatus = petStatus;
     }
 
-    public int getPetId() {
+    public long getPetId() {
         return petId;
     }
 
