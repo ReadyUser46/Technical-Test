@@ -36,10 +36,10 @@ public class Task2 {
 
         // Set properties depending on SO: Windows / linux
         if (System.getProperty("os.name").contains("Windows")) {
-            screenShootPath = System.getProperty("user.dir") + "\\src\\main\\resources\\task1";
+            screenShootPath = System.getProperty("user.dir") + "\\src\\main\\resources\\task2\\screenshoots";
             System.setProperty("webdriver.chrome.driver", "C:\\chromedriver.exe");
         } else {
-            screenShootPath = System.getProperty("user.dir") + "/src/main/resources/task1";
+            screenShootPath = System.getProperty("user.dir") + "/src/main/resources/task2/screenshoots";
             System.setProperty("webdriver.chrome.driver", "chromedriver_linux");
         }
 
