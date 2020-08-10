@@ -1,9 +1,9 @@
-package models;
+package Task3.models;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Category {
+public class Tag {
 
     @SerializedName("id")
     @Expose
@@ -12,7 +12,7 @@ public class Category {
     @Expose
     private String name;
 
-    public Category(int id, String name) {
+    public Tag(int id, String name) {
         this.id = id;
         this.name = name;
     }

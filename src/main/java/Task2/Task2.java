@@ -1,5 +1,6 @@
+package Task2;
+
 import org.apache.commons.io.FileUtils;
-import org.openqa.selenium.Point;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import ru.yandex.qatools.ashot.AShot;
@@ -19,23 +20,28 @@ import java.util.regex.Pattern;
 
 public class Task2 {
 
+    // member variables
+    private String browserURL;
+    private String queryString;
+    private String screenShootPath;
+    private WebDriver driver;
+
+    // constructor
+    public Task2(String queryString, String screenShootPath) {
+        System.setProperty("webdriver.chrome.driver", "C:\\chromedriver.exe");
+        driver = initBrowser();
+        browserURL = "https://www.google.com/";
+        this.queryString = queryString;
+        this.screenShootPath = screenShootPath;
+    }
+
     public static void main(String[] args) throws InterruptedException {
 
-        System.setProperty("webdriver.chrome.driver", "C:\\chromedriver.exe");
-
-        // variables
-        String browserURL = "https://www.google.com/";
-        String queryString = "automatización";
-        String screenShootPath = "C:\\Users\\sca_m\\Pictures\\seleniumPictures\\";
-
-        // init browser
-        WebDriver googleDriver = new ChromeDriver();
-        //googleDriver.manage().window().maximize();
-        googleDriver.manage().window().setPosition(new Point(-2000, 0));
+        //System.setProperty("webdriver.chrome.driver", "C:\\chromedriver.exe");
 
 
         // Search query
-        onSearchQuery(googleDriver, browserURL, queryString);
+        //onSearchQuery(googleDriver, browserURL, queryString);
 
         // Viewable area Screenshot
         //onTakeViewAreaScreenShoot(googleDriver, screenShootPath);
@@ -44,15 +50,22 @@ public class Task2 {
         //onTakeFullScreenShoot(googleDriver, screenShootPath);
 
         // Wiki
-        wikiResult2(googleDriver);
+        //wikiResult2(googleDriver);
 
         // close browser
-        googleDriver.close();
+        //googleDriver.close();
 
 
     }
 
-    private static void onSearchQuery(WebDriver driver, String browserURL, String queryText) {
+    public WebDriver initBrowser() {
+        WebDriver googleDriver = new ChromeDriver();
+        googleDriver.manage().window().maximize();
+        return googleDriver;
+    }
+
+    public void onSearchQuery() {
+        System.out.println("Searching on Google for " + queryString);
 
         // open browser
         driver.get(browserURL);
@@ -60,8 +73,13 @@ public class Task2 {
         // google searchBox
         WebElement searchBox = driver.findElement(By.name("q"));
         searchBox.clear();
-        searchBox.sendKeys(queryText);
+        searchBox.sendKeys(queryString);
         searchBox.submit();
+
+    }
+
+    public void onGetWikiResult() {
+        System.out.println("Opening the Wikipedia result...");
 
         // get wiki result
         String xpath = "//div[@class=\"g\"]//div[@class=\"r\"]//a[starts-with(@href,\"https://es.wikipedia.org/wiki/\")]";
@@ -77,83 +95,37 @@ public class Task2 {
         }*/
     }
 
-    private static File createFileFromPath(String path, String scType) {
-
-        //Directory
-        File directory = new File(path);
-        if (!directory.exists()) directory.mkdirs();
-
-        //File Name
-        Date date = new Date();
-        DateFormat dateFormat = new SimpleDateFormat("dd_MM_yy-HH_mm_ss");
-        dateFormat.format(date);
-        String fileName = "IMG_" + dateFormat.format(date) + "_" + scType + ".png";
-
-        return new File(directory + "/" + fileName);
-    }
-
-    private static void onTakeFullScreenShoot(WebDriver driver, String destPath) {
+    public void onTakeFullScreenShoot() {
+        System.out.println("Taking full screenshot...");
 
         Screenshot sc = new AShot().shootingStrategy(ShootingStrategies.viewportPasting(1000))
                 .takeScreenshot(driver);
         try {
-            ImageIO.write(sc.getImage(), "PNG", createFileFromPath(destPath, "full"));
+            ImageIO.write(sc.getImage(), "PNG", createFileFromPath(screenShootPath, "full"));
             String os = System.getProperty("os.name");
-            if (os.contains("Windows")) Desktop.getDesktop().open(new File(destPath));
+            if (os.contains("Windows")) Desktop.getDesktop().open(new File(screenShootPath));
             else System.out.println("TODO");
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    private static void onTakeViewAreaScreenShoot(WebDriver driver, String destPath) {
+    public void onTakeViewAreaScreenShoot() {
+        System.out.println("Taking the viewable area screenshoot...");
+
         File scFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
         try {
-            FileUtils.copyFile(scFile, createFileFromPath(destPath, "viewableArea"));
+            FileUtils.copyFile(scFile, createFileFromPath(screenShootPath, "viewableArea"));
             String os = System.getProperty("os.name");
-            if (os.contains("Windows")) Desktop.getDesktop().open(new File(destPath));
+            if (os.contains("Windows")) Desktop.getDesktop().open(new File(screenShootPath));
             else System.out.println("TODO");
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    private static void wikiResult(WebDriver driver) {
-        // wiki vars
-        ArrayList<String> headers = new ArrayList<>();
-        List<String> phrase = new ArrayList<>();
-
-
-        // Wikipedia
-        List<WebElement> wikiResult = driver.findElements(By.cssSelector("div.mw-parser-output *"));
-        for (WebElement child : wikiResult) {
-
-            if (child.getTagName().equalsIgnoreCase("h3")) {
-                String header = child.findElement(By.cssSelector("span.mw-headline")).getText();
-                headers.add(header);
-                System.out.println(header);
-
-            }
-            if (child.getTagName().equalsIgnoreCase("p")) {
-                if (child.getText().contains("año")) {
-                    String p = child.getText();
-                    System.out.println(p);
-
-                    String[] strings = p.split(".");
-                    for (String s : strings) {
-                        if (s.contains("año")) {
-                            phrase.add(s);
-                        }
-                    }
-
-
-                }
-            }
-        }
-    }
-
-    private static void wikiResult2(WebDriver driver) {
-
+    public void onCheckFirstAutomationProcess() {
+        System.out.println("Checking for the first automation process...\n\n");
         // wiki vars
         List<String> headersList = new ArrayList<>();
         List<String> paragraphList = new ArrayList<>();
@@ -176,5 +148,22 @@ public class Task2 {
             else if (str.contains("automático") && str.contains("1801")) System.out.println(str);
         }
 
+        // The driver get closed due to last execution
+        driver.close();
+    }
+
+    private File createFileFromPath(String path, String scType) {
+
+        //Directory
+        File directory = new File(path);
+        if (!directory.exists()) directory.mkdirs();
+
+        //File Name
+        Date date = new Date();
+        DateFormat dateFormat = new SimpleDateFormat("dd_MM_yy-HH_mm_ss");
+        dateFormat.format(date);
+        String fileName = "IMG_" + dateFormat.format(date) + "_" + scType + ".png";
+
+        return new File(directory + "/" + fileName);
     }
 }

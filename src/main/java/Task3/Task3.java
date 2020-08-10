@@ -1,6 +1,8 @@
+package Task3;
+
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import models.Pet;
+import Task3.models.Pet;
 import okhttp3.*;
 import org.json.JSONObject;
 
@@ -18,7 +20,7 @@ public class Task3 {
         String baseUrl = "https://petstore.swagger.io/v2";
         JSONObject newUser = new JSONObject();
 
-        // Task3.1 --> Create user by http request and retrieve user data
+        // Task3.Task3.1 --> Create user by http request and retrieve user data
         //Request call1 = onPostUser(baseUrl, newUser);
         //Request call2 = onGetUser(baseUrl, newUser.getString("username"));
         Request call3 = onGetPetFindByStatus(baseUrl, "sold");
@@ -34,7 +36,7 @@ public class Task3 {
             List<Pet> petList = deserializeResponse(responseString);
             Map<Long, String> petMapTask3 = onCreateHastMapFromPetList(petList);
 
-            // Task3.2 --> List sold pet names with format {id, name} by using a HashMap object
+            // Task3.Task3.2 --> List sold pet names with format {id, name} by using a HashMap object
             System.out.println("\nDumping hashMap objects for sold pets --> (id, name) ");
             System.out.println(petMapTask3);
             System.out.println("\n" +
@@ -43,7 +45,7 @@ public class Task3 {
                 System.out.println(String.format("{id: %s , name: %s}", m.getKey(), m.getValue()));
             }
 
-            // Task3.3 --> List sold pet names with format {id, name} by using a HashMap object
+            // Task3.Task3.3 --> List sold pet names with format {id, name} by using a HashMap object
             PetTools petTools = new PetTools(petMapTask3);
             petTools.samePetNames();
         }

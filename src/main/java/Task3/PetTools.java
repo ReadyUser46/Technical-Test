@@ -1,3 +1,5 @@
+package Task3;
+
 import java.util.*;
 
 public class PetTools {
