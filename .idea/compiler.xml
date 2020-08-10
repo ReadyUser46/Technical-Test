@@ -6,11 +6,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="everis" />
+        <module name="technicalTest" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="everis" target="7" />
+      <module name="technicalTest" target="7" />
     </bytecodeTargetLevel>
   </component>
 </project>

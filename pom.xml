@@ -4,8 +4,8 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>testApp</groupId>
-    <artifactId>everis</artifactId>
+    <groupId>com.technicaltest.sca</groupId>
+    <artifactId>technicalTest</artifactId>
     <version>1.0-SNAPSHOT</version>
     <build>
         <plugins>
