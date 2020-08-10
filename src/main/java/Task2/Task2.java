@@ -117,7 +117,6 @@ public class Task2 {
         System.out.println(headersList);
         System.out.println("------------------");
 
-        String regex = ".*\\b" + Pattern.quote("año") + "\\b.*";
         for (String str : paragraphList) {
             if (str.contains("1960")) System.out.println(str);
             else if (str.contains("automático") && str.contains("1801")) System.out.println(str);
