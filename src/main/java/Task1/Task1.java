@@ -21,5 +21,4 @@ public class Task1 {
 
     }
 
-
 }

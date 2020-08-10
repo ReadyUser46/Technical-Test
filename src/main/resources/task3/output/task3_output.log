@@ -1,0 +1,183 @@
+1 - Task 1: Exploratory test and bugs report
+2 - Task 2: Webpage automation
+3 - Task 3: API
+
+Select the task you want to execute (1/2/3):
+3
+----------- TASK 3 ------------
+Creating new user...
+New user registration successfull
+---------------------------------
+Retrieving user377 data
+{"id":5,"username":"user377","firstName":"Joker377","lastName":"Joker378","email":"joker@joker.com","password":"user377","phone":"377","userStatus":0}
+---------------------------------
+Getting pets by the status sold
+*Deserialization http response to Java Pet model --> done
+Listing pet names sold with format {id, name} by using a HashMap object
+{132=doggie, 556=doggie, 277=doggie, 643=doggie, 961=doggie, 957=doggie, 892=doggie, 667=doggie, 926=doggie, 928=doggie, 732=doggie, 159=doggie, 42=doggie, 1004=doggie, 331=doggie, 64=doggie, 49=doggie, 679=doggie, 621=doggie, 625=doggie, 840=doggie, 290=doggie, 777=doggie, 605=doggie, 692=doggie, 95=doggie, 442=doggie, 951=doggie, 747=doggie, 297=doggie, 997=doggie, 523=doggie, 645=doggie, 397=doggie, 700=doggie, 813=doggie, 864=doggie, 1011=doggie, 224=doggie, 89=doggie, 538=doggie, 425=doggie, 816=doggie, 340=doggie, 805=doggie, 255=doggie, 767=doggie, 479=doggie, 110=doggie, 540=doggie, 48=doggie, 760=doggie, 35=doggie, 390=doggie, 873=doggie, 707=doggie, 477=doggie, 586=doggie, 684=doggie, 562=doggie, 117=doggie, 787=doggie, 440=doggie, 889=doggie, 105=John, 424=doggie, 904=doggie, 543=doggie, 98=doggie, 31=doggie, 708=doggie, 973=doggie, 154=doggie, 569=doggie, 238=doggie, 307=doggie, 303=doggie, 960=doggie, 729=doggie, 606=doggie, 83=doggie, 91=doggie, 886=doggie, 573=doggie, 140=doggie, 843=doggie, 150=doggie, 112=doggie, 259=doggie, 455=doggie, 674=doggie, 292=doggie, 1000=doggie, 466=doggie, 321=doggie, 1005=doggie, 686=doggie, 665=doggie, 641=doggie, 536=doggie, 293=doggie, 335=doggie, 130=doggie, 478=doggie, 280=doggie, 724=doggie, 968=doggie, 797=doggie, 223=doggie, 333=doggie, 418=doggie, 343=doggie, 226=doggie, 458=doggie, 705=doggie, 429=doggie, 974=doggie, 915=doggie, 942=doggie, 488=doggie, 417=doggie, 897=doggie, 57=doggie, 647=doggie, 427=doggie, 912=doggie, 514=doggie, 632=doggie, 162=doggie, 463=doggie, 671=doggie, 386=doggie, 106=doggie, 656=doggie, 1931=valueimplcat, 1576=valueimplcat, 1500=Joshua, 1501=Donna, 1502=William, 1503=Richard, 1504=Krystal, 1505=Sarah, 1506=Lois, 1507=Danny, 1508=Brian, 1509=Gary, 1510=Bessie, 1511=Jerry, 1512=Mark, 1513=Merle, 1514=Ruth, 1515=Keith, 1517=Jason, 1518=Andre, 1519=Jasmin, 1520=Nancy, 1521=Alice, 1948=valueimplcat}
+
+Beauty hashmap output:
+{id: 132 , name: doggie}
+{id: 556 , name: doggie}
+{id: 277 , name: doggie}
+{id: 643 , name: doggie}
+{id: 961 , name: doggie}
+{id: 957 , name: doggie}
+{id: 892 , name: doggie}
+{id: 667 , name: doggie}
+{id: 926 , name: doggie}
+{id: 928 , name: doggie}
+{id: 732 , name: doggie}
+{id: 159 , name: doggie}
+{id: 42 , name: doggie}
+{id: 1004 , name: doggie}
+{id: 331 , name: doggie}
+{id: 64 , name: doggie}
+{id: 49 , name: doggie}
+{id: 679 , name: doggie}
+{id: 621 , name: doggie}
+{id: 625 , name: doggie}
+{id: 840 , name: doggie}
+{id: 290 , name: doggie}
+{id: 777 , name: doggie}
+{id: 605 , name: doggie}
+{id: 692 , name: doggie}
+{id: 95 , name: doggie}
+{id: 442 , name: doggie}
+{id: 951 , name: doggie}
+{id: 747 , name: doggie}
+{id: 297 , name: doggie}
+{id: 997 , name: doggie}
+{id: 523 , name: doggie}
+{id: 645 , name: doggie}
+{id: 397 , name: doggie}
+{id: 700 , name: doggie}
+{id: 813 , name: doggie}
+{id: 864 , name: doggie}
+{id: 1011 , name: doggie}
+{id: 224 , name: doggie}
+{id: 89 , name: doggie}
+{id: 538 , name: doggie}
+{id: 425 , name: doggie}
+{id: 816 , name: doggie}
+{id: 340 , name: doggie}
+{id: 805 , name: doggie}
+{id: 255 , name: doggie}
+{id: 767 , name: doggie}
+{id: 479 , name: doggie}
+{id: 110 , name: doggie}
+{id: 540 , name: doggie}
+{id: 48 , name: doggie}
+{id: 760 , name: doggie}
+{id: 35 , name: doggie}
+{id: 390 , name: doggie}
+{id: 873 , name: doggie}
+{id: 707 , name: doggie}
+{id: 477 , name: doggie}
+{id: 586 , name: doggie}
+{id: 684 , name: doggie}
+{id: 562 , name: doggie}
+{id: 117 , name: doggie}
+{id: 787 , name: doggie}
+{id: 440 , name: doggie}
+{id: 889 , name: doggie}
+{id: 105 , name: John}
+{id: 424 , name: doggie}
+{id: 904 , name: doggie}
+{id: 543 , name: doggie}
+{id: 98 , name: doggie}
+{id: 31 , name: doggie}
+{id: 708 , name: doggie}
+{id: 973 , name: doggie}
+{id: 154 , name: doggie}
+{id: 569 , name: doggie}
+{id: 238 , name: doggie}
+{id: 307 , name: doggie}
+{id: 303 , name: doggie}
+{id: 960 , name: doggie}
+{id: 729 , name: doggie}
+{id: 606 , name: doggie}
+{id: 83 , name: doggie}
+{id: 91 , name: doggie}
+{id: 886 , name: doggie}
+{id: 573 , name: doggie}
+{id: 140 , name: doggie}
+{id: 843 , name: doggie}
+{id: 150 , name: doggie}
+{id: 112 , name: doggie}
+{id: 259 , name: doggie}
+{id: 455 , name: doggie}
+{id: 674 , name: doggie}
+{id: 292 , name: doggie}
+{id: 1000 , name: doggie}
+{id: 466 , name: doggie}
+{id: 321 , name: doggie}
+{id: 1005 , name: doggie}
+{id: 686 , name: doggie}
+{id: 665 , name: doggie}
+{id: 641 , name: doggie}
+{id: 536 , name: doggie}
+{id: 293 , name: doggie}
+{id: 335 , name: doggie}
+{id: 130 , name: doggie}
+{id: 478 , name: doggie}
+{id: 280 , name: doggie}
+{id: 724 , name: doggie}
+{id: 968 , name: doggie}
+{id: 797 , name: doggie}
+{id: 223 , name: doggie}
+{id: 333 , name: doggie}
+{id: 418 , name: doggie}
+{id: 343 , name: doggie}
+{id: 226 , name: doggie}
+{id: 458 , name: doggie}
+{id: 705 , name: doggie}
+{id: 429 , name: doggie}
+{id: 974 , name: doggie}
+{id: 915 , name: doggie}
+{id: 942 , name: doggie}
+{id: 488 , name: doggie}
+{id: 417 , name: doggie}
+{id: 897 , name: doggie}
+{id: 57 , name: doggie}
+{id: 647 , name: doggie}
+{id: 427 , name: doggie}
+{id: 912 , name: doggie}
+{id: 514 , name: doggie}
+{id: 632 , name: doggie}
+{id: 162 , name: doggie}
+{id: 463 , name: doggie}
+{id: 671 , name: doggie}
+{id: 386 , name: doggie}
+{id: 106 , name: doggie}
+{id: 656 , name: doggie}
+{id: 1931 , name: valueimplcat}
+{id: 1576 , name: valueimplcat}
+{id: 1500 , name: Joshua}
+{id: 1501 , name: Donna}
+{id: 1502 , name: William}
+{id: 1503 , name: Richard}
+{id: 1504 , name: Krystal}
+{id: 1505 , name: Sarah}
+{id: 1506 , name: Lois}
+{id: 1507 , name: Danny}
+{id: 1508 , name: Brian}
+{id: 1509 , name: Gary}
+{id: 1510 , name: Bessie}
+{id: 1511 , name: Jerry}
+{id: 1512 , name: Mark}
+{id: 1513 , name: Merle}
+{id: 1514 , name: Ruth}
+{id: 1515 , name: Keith}
+{id: 1517 , name: Jason}
+{id: 1518 , name: Andre}
+{id: 1519 , name: Jasmin}
+{id: 1520 , name: Nancy}
+{id: 1521 , name: Alice}
+{id: 1948 , name: valueimplcat}
+---------------------------------
+Identifying how many pets have the same name...
+List of pets with same name:
+{doggie=133, John=1, valueimplcat=3, Joshua=1, Donna=1, William=1, Richard=1, Krystal=1, Sarah=1, Lois=1, Danny=1, Brian=1, Gary=1, Bessie=1, Jerry=1, Mark=1, Merle=1, Ruth=1, Keith=1, Jason=1, Andre=1, Jasmin=1, Nancy=1, Alice=1}
+
+Process finished with exit code 0

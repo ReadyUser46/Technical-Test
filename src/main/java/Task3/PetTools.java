@@ -4,12 +4,15 @@ import java.util.*;
 
 public class PetTools {
 
+    // Member variables
     private final Map<Long, String> petMap;
 
+    // Constructor
     public PetTools(Map<Long, String> petMap) {
         this.petMap = petMap;
     }
 
+    // Methods
     public void samePetNames() {
         System.out.println("List of pets with same name: ");
 

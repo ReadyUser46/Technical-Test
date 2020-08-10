@@ -14,14 +14,17 @@ import java.util.Map;
 
 public class Task3 {
 
+    // Member variables
     private final OkHttpClient client;
     private final String baseUrl;
 
+    // Constructor
     public Task3() {
         client = new OkHttpClient();
         baseUrl = "https://petstore.swagger.io/v2";
     }
 
+    // Methods
     private Response executeHttpRequest(Request call) throws IOException {
         return client.newCall(call).execute();
     }
