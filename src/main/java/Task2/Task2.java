@@ -37,7 +37,7 @@ public class Task2 {
         // Set properties depending on SO: Windows / linux
         if (System.getProperty("os.name").contains("Windows")) {
             screenShootPath = System.getProperty("user.dir") + "\\src\\main\\resources\\task1";
-            System.setProperty("webdriver.chrome.driver", "C:\\chromedriver.ex");
+            System.setProperty("webdriver.chrome.driver", "C:\\chromedriver.exe");
         } else {
             screenShootPath = System.getProperty("user.dir") + "/src/main/resources/task1";
             System.setProperty("webdriver.chrome.driver", "chromedriver_linux");
@@ -45,9 +45,10 @@ public class Task2 {
 
         // init browser
         try {
-            WebDriver googleDriver = new ChromeDriver();
-            googleDriver.manage().window().maximize();
-            return googleDriver;
+            WebDriver chromeDriver = new ChromeDriver();
+            chromeDriver.manage().window().maximize();
+            return chromeDriver;
+
         } catch (Exception e) {
             System.out.println("You must place the chromedriver into C:\\ if you are using Windows SO,\n"
                     + "or into the root proyect folder if you are using Linux\n"
