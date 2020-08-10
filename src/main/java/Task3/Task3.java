@@ -14,75 +14,62 @@ import java.util.Map;
 
 public class Task3 {
 
-    public static void main(String[] args) throws IOException {
+    private final OkHttpClient client;
+    private final String baseUrl;
 
-        OkHttpClient client = new OkHttpClient();
-        String baseUrl = "https://petstore.swagger.io/v2";
-        JSONObject newUser = new JSONObject();
-
-        // Task3.Task3.1 --> Create user by http request and retrieve user data
-        //Request call1 = onPostUser(baseUrl, newUser);
-        //Request call2 = onGetUser(baseUrl, newUser.getString("username"));
-        Request call3 = onGetPetFindByStatus(baseUrl, "sold");
-
-        try (Response response = client.newCall(call3).execute()) {
-            if (!response.isSuccessful()) throw new IOException("Unexpected code " + response);
-
-            // Get respone body
-            String responseString = response.body().string();
-            System.out.println("\nResponse (json): " + responseString);
-            System.out.println(responseString);
-
-            List<Pet> petList = deserializeResponse(responseString);
-            Map<Long, String> petMapTask3 = onCreateHastMapFromPetList(petList);
-
-            // Task3.Task3.2 --> List sold pet names with format {id, name} by using a HashMap object
-            System.out.println("\nDumping hashMap objects for sold pets --> (id, name) ");
-            System.out.println(petMapTask3);
-            System.out.println("\n" +
-                    "Beauty hashmap output:");
-            for (Map.Entry m : petMapTask3.entrySet()) {
-                System.out.println(String.format("{id: %s , name: %s}", m.getKey(), m.getValue()));
-            }
-
-            // Task3.Task3.3 --> List sold pet names with format {id, name} by using a HashMap object
-            PetTools petTools = new PetTools(petMapTask3);
-            petTools.samePetNames();
-        }
+    public Task3() {
+        client = new OkHttpClient();
+        baseUrl = "https://petstore.swagger.io/v2";
     }
 
-    private static Request onGetUser(String baseUrl, String user) {
-        System.out.println("Fetching data for user: " + user);
-        return new Request.Builder()
-                .url(baseUrl + "/user/" + user)
-                .build();
+    private Response executeHttpRequest(Request call) throws IOException {
+        return client.newCall(call).execute();
     }
 
-    private static Request onPostUser(String baseUrl, JSONObject newUser) {
-
-        newUser.put("id", 5);
-        newUser.put("username", "user377");
-        newUser.put("firstName", "Joker377");
-        newUser.put("lastName", "Joker378");
-        newUser.put("email", "joker@joker.com");
-        newUser.put("password", "user377");
-        newUser.put("phone", "377");
-        newUser.put("userStatus", 0);
-
+    public void onPostUser(JSONObject newUser) {
         MediaType JSON = MediaType.parse("application/json;charset=utf-8");
         RequestBody body = RequestBody.create(JSON, newUser.toString());
 
         System.out.println("Creating new user...");
 
-        return new Request.Builder()
+        Request postRequest = new Request.Builder()
                 .url(baseUrl + "/user/")
                 .post(body)
                 .build();
+
+        try {
+            Response response = executeHttpRequest(postRequest);
+            if (response.isSuccessful()) {
+                System.out.println("New user registration successfull");
+            } else {
+                System.out.println("Unexpected code " + response);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
-    private static Request onGetPetFindByStatus(String baseUrl, String status) {
+    public void onGetUser(String user) {
 
-        System.out.println("\nFinding pets by status: " + status);
+        System.out.printf("Retrieving %s data\n", user);
+        Request getRequest = new Request.Builder()
+                .url(baseUrl + "/user/" + user)
+                .build();
+
+        try {
+            Response response = executeHttpRequest(getRequest);
+            if (response.isSuccessful() && response.body() != null) {
+                System.out.println(response.body().string());
+            } else {
+                System.out.println("Unexpected code " + response);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public Map<Long, String> onGetPetFindByStatus(String status) {
 
         HttpUrl url = new HttpUrl.Builder()
                 .scheme("https")
@@ -93,12 +80,45 @@ public class Task3 {
                 .addQueryParameter("status", status)
                 .build();
 
-        return new Request.Builder()
+        Request getRequest = new Request.Builder()
                 .url(url)
                 .build();
+
+        try {
+            Response response = executeHttpRequest(getRequest);
+            if (response.isSuccessful() && response.body() != null) {
+                System.out.println("Getting pets by the status " + status);
+                String responseString = response.body().string();
+
+                System.out.println("*Deserialization http response to Java Pet model --> done");
+                List<Pet> petList = deserializeResponse(responseString);
+                Map<Long, String> tupleTask3 = onCreateHastMapFromPetList(petList);
+
+                System.out.println("Listing pet names sold with format {id, name} by using a HashMap object");
+                System.out.println(tupleTask3);
+                System.out.println("\nBeauty hashmap output: ");
+                for (Map.Entry<Long, String> m : tupleTask3.entrySet()) {
+                    System.out.printf("{id: %s , name: %s}%n", m.getKey(), m.getValue());
+                }
+                return tupleTask3;
+            } else {
+                System.out.println("Unexpected code " + response);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
-    private static List<Pet> deserializeResponse(String respose) {
+    public void onGetSamePetNames(Map<Long, String> petMapTask3) {
+        System.out.println("Identifying how many pets have the same name...");
+        PetTools petTools = new PetTools(petMapTask3);
+        petTools.samePetNames();
+
+        System.exit(0);
+    }
+
+    private List<Pet> deserializeResponse(String respose) {
 
         Gson gson = new Gson();
 
@@ -108,7 +128,7 @@ public class Task3 {
         return gson.fromJson(respose, petType);
     }
 
-    private static Map<Long, String> onCreateHastMapFromPetList(List<Pet> petList) {
+    private Map<Long, String> onCreateHastMapFromPetList(List<Pet> petList) {
         Map<Long, String> task3Map = new LinkedHashMap<>();
 
         for (Pet pet : petList) {

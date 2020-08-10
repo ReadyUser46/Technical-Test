@@ -11,7 +11,7 @@ public class PetTools {
     }
 
     public void samePetNames() {
-        System.out.println("\nListing pets with same name...");
+        System.out.println("List of pets with same name: ");
 
         Map<String, Integer> counter = new LinkedHashMap<>();
         for (String keyName : petMap.values()) {
