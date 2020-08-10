@@ -27,25 +27,33 @@ public class Task2 {
 
     // constructor
     public Task2(String queryString) {
-        driver = initBrowser();
+        driver = setupBrowser();
         this.queryString = queryString;
         browserURL = "https://www.google.com/";
     }
 
-    public WebDriver initBrowser() {
+    public WebDriver setupBrowser() {
+
         // Set properties depending on SO: Windows / linux
         if (System.getProperty("os.name").contains("Windows")) {
-            System.setProperty("webdriver.chrome.driver", "C:\\chromedriver.exe");
             screenShootPath = System.getProperty("user.dir") + "\\src\\main\\resources\\task1";
+            System.setProperty("webdriver.chrome.driver", "C:\\chromedriver.ex");
         } else {
-            System.setProperty("webdriver.chrome.driver", "chromedriver2");
             screenShootPath = System.getProperty("user.dir") + "/src/main/resources/task1";
+            System.setProperty("webdriver.chrome.driver", "chromedriver_linux");
         }
 
-        WebDriver googleDriver = new ChromeDriver();
-        googleDriver.manage().window().maximize();
-        return googleDriver;
-
+        // init browser
+        try {
+            WebDriver googleDriver = new ChromeDriver();
+            googleDriver.manage().window().maximize();
+            return googleDriver;
+        } catch (Exception e) {
+            System.out.println("You must place the chromedriver into C:\\ if you are using Windows SO,\n"
+                    + "or into the root proyect folder if you are using Linux\n"
+                    + "Also, ensure your chromedriver mathces your browser version");
+        }
+        return null;
     }
 
     public void onSearchQuery() {
