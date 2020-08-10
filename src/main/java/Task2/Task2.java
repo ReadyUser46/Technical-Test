@@ -22,27 +22,34 @@ public class Task2 {
     // member variables
     private final String browserURL;
     private final String queryString;
-    private final String screenShootPath;
+    private String screenShootPath;
     private final WebDriver driver;
 
     // constructor
     public Task2(String queryString) {
-        System.setProperty("webdriver.chrome.driver", "C:\\chromedriver.exe");
         driver = initBrowser();
         this.queryString = queryString;
         browserURL = "https://www.google.com/";
-        screenShootPath = System.getProperty("user.dir") +
-                "\\src\\main\\resources\\task2\\seleniumPictures";
     }
 
     public WebDriver initBrowser() {
+        // Set properties depending on SO: Windows / linux
+        if (System.getProperty("os.name").contains("Windows")) {
+            System.setProperty("webdriver.chrome.driver", "C:\\chromedriver.exe");
+            screenShootPath = System.getProperty("user.dir") + "\\src\\main\\resources\\task1";
+        } else {
+            System.setProperty("webdriver.chrome.driver", "chromedriver2");
+            screenShootPath = System.getProperty("user.dir") + "/src/main/resources/task1";
+        }
+
         WebDriver googleDriver = new ChromeDriver();
         googleDriver.manage().window().maximize();
         return googleDriver;
+
     }
 
     public void onSearchQuery() {
-        System.out.printf("Searching on Google for \"%s\"\n",queryString);
+        System.out.printf("Searching on Google for \"%s\"\n", queryString);
 
         // open browser
         driver.get(browserURL);
@@ -91,9 +98,10 @@ public class Task2 {
         try {
             FileUtils.copyFile(scFile, createFileFromPath(screenShootPath, "viewableArea"));
             String os = System.getProperty("os.name");
-            if (os.contains("Windows")) Desktop.getDesktop().open(new File(screenShootPath));
-            else System.out.println("TODO");
+            Desktop.getDesktop().open(new File(screenShootPath));
+
         } catch (IOException e) {
+            System.out.println("Unexpected error");
             e.printStackTrace();
         }
     }
@@ -122,8 +130,8 @@ public class Task2 {
         }
 
         // Display
-        System.out.printf("\n%s:\n  %s",headersList.get(1),phraseList.get(0));
-        System.out.printf("\n%s:\n  %s",headersList.get(2),phraseList.get(1));
+        System.out.printf("\n%s:\n  %s", headersList.get(1), phraseList.get(0));
+        System.out.printf("\n%s:\n  %s", headersList.get(2), phraseList.get(1));
 
         // The driver get closed due to last execution
         driver.close();
@@ -144,3 +152,4 @@ public class Task2 {
         return new File(directory + "/" + fileName);
     }
 }
+
