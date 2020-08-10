@@ -43,7 +43,7 @@ public class Task2 {
     }
 
     public void onSearchQuery() {
-        System.out.println("Searching on Google for " + queryString);
+        System.out.printf("Searching on Google for \"%s\"\n",queryString);
 
         // open browser
         driver.get(browserURL);

@@ -1,0 +1,27 @@
+1 - Task 1: Exploratory test and bugs report
+2 - Task 2: Webpage automation
+3 - Task 3: API
+
+Select the task you want to execute (1/2/3):
+2
+----------- TASK 2 ------------
+Starting ChromeDriver 84.0.4147.30 (48b3e868b4cc0aa7e8149519690b6f6949e110a8-refs/branch-heads/4147@{#310}) on port 11535
+Only local connections are allowed.
+Please see https://chromedriver.chromium.org/security-considerations for suggestions on keeping ChromeDriver safe.
+ChromeDriver was started successfully.
+ago 10, 2020 1:09:07 PM org.openqa.selenium.remote.ProtocolHandshake createSession
+INFORMACIÓN: Detected dialect: W3C
+Searching on Google for "automatización"
+Opening the Wikipedia result...
+Taking full screenshot...
+Taking the viewable area screenshoot...
+Checking for the first automation process...
+
+
+Headers
+[Prehistoria, Siglo XIX, Siglo XX, Minería automatizada, Automatización de los procesos de negocio, Platooning]
+------------------
+En 1801, la patente de un telar automático utilizando tarjetas perforadas fue dada a Joseph Marie Jacquard, quien revolucionó la industria del textil.
+La automatización había existido por muchos años en una escala pequeña, y para mediados del siglo XX aún utilizaba mecanismos simples para automatizar tareas sencillas de manufactura. El concepto solamente llegó a ser realmente práctico con la adición (y evolución) de las computadoras digitales, cuya flexibilidad permitió manejar cualquier clase de tarea. Las computadoras digitales con la combinación requerida de velocidad, poder de cómputo, precio y tamaño, como para ser aplicadas en la industria, empezaron a aparecer en la década de los años 1960. Antes de ese tiempo, las computadoras industriales eran exclusivamente computadoras analógicas y computadoras híbridas. Desde entonces las computadoras digitales tomaron el control de la mayoría de las tareas simples, repetitivas, tareas semiespecializadas y especializadas, con algunas excepciones notables en la producción e inspección de alimentos. Como un famoso dicho anónimo dice, "para muchas y muy cambiantes tareas, es difícil reemplazar a los seres humanos, quienes son fácilmente vueltos a entrenar dentro de un amplio rango de tareas, más aún, son producidos a bajo costo por personal sin entrenamiento".
+
+Process finished with exit code 0
