@@ -1,3 +1,4 @@
+import Task1.Task1;
 import Task2.Task2;
 
 import java.util.InputMismatchException;
@@ -16,30 +17,31 @@ public class Main {
 
         try {
             int response = input.nextInt();
-
             switch (response) {
+
                 case 1:
-                    // actions
-                    System.out.println("task 1");
+                    System.out.println("----------- TASK 1 ------------");
+                    Task1.onOpeningResourceDirectory();
                     break;
+
                 case 2:
                     String queryString = "automatización";
-                    String screenShootPath = "C:\\Users\\sca_m\\Pictures\\seleniumPictures\\";
 
                     System.out.println("----------- TASK 2 ------------");
-                    Task2 task2 = new Task2(queryString, screenShootPath);
+                    Task2 task2 = new Task2(queryString);
 
                     task2.onSearchQuery();
                     task2.onGetWikiResult();
                     task2.onTakeFullScreenShoot();
                     task2.onTakeViewAreaScreenShoot();
                     task2.onCheckFirstAutomationProcess();
+                    break;
+
+                case 3:
+                    System.out.println("----------- TASK 3 ------------");
 
                     break;
-                case 3:
-                    // actions
-                    System.out.println("task 3");
-                    break;
+
                 default:
                     // actions
                     System.out.println("You must introduce a valid input (1/2/3)");

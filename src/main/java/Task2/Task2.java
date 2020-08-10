@@ -21,41 +21,19 @@ import java.util.regex.Pattern;
 public class Task2 {
 
     // member variables
-    private String browserURL;
-    private String queryString;
-    private String screenShootPath;
-    private WebDriver driver;
+    private final String browserURL;
+    private final String queryString;
+    private final String screenShootPath;
+    private final WebDriver driver;
 
     // constructor
-    public Task2(String queryString, String screenShootPath) {
+    public Task2(String queryString) {
         System.setProperty("webdriver.chrome.driver", "C:\\chromedriver.exe");
         driver = initBrowser();
-        browserURL = "https://www.google.com/";
         this.queryString = queryString;
-        this.screenShootPath = screenShootPath;
-    }
-
-    public static void main(String[] args) throws InterruptedException {
-
-        //System.setProperty("webdriver.chrome.driver", "C:\\chromedriver.exe");
-
-
-        // Search query
-        //onSearchQuery(googleDriver, browserURL, queryString);
-
-        // Viewable area Screenshot
-        //onTakeViewAreaScreenShoot(googleDriver, screenShootPath);
-
-        // Full page Screenshot
-        //onTakeFullScreenShoot(googleDriver, screenShootPath);
-
-        // Wiki
-        //wikiResult2(googleDriver);
-
-        // close browser
-        //googleDriver.close();
-
-
+        browserURL = "https://www.google.com/";
+        screenShootPath = System.getProperty("user.dir") +
+                "\\src\\main\\resources\\task2\\seleniumPictures";
     }
 
     public WebDriver initBrowser() {
@@ -102,9 +80,6 @@ public class Task2 {
                 .takeScreenshot(driver);
         try {
             ImageIO.write(sc.getImage(), "PNG", createFileFromPath(screenShootPath, "full"));
-            String os = System.getProperty("os.name");
-            if (os.contains("Windows")) Desktop.getDesktop().open(new File(screenShootPath));
-            else System.out.println("TODO");
         } catch (IOException e) {
             e.printStackTrace();
         }
