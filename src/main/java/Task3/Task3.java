@@ -1,5 +1,6 @@
 package Task3;
 
+import Task3.models.User;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import Task3.models.Pet;
@@ -55,7 +56,7 @@ public class Task3 {
 
     public void onGetUser(String user) {
 
-        System.out.printf("Retrieving %s data\n", user);
+        System.out.printf("Retrieving data for user \"%s\"\n", user);
         Request getRequest = new Request.Builder()
                 .url(baseUrl + "/user/" + user)
                 .build();
@@ -63,7 +64,20 @@ public class Task3 {
         try {
             Response response = executeHttpRequest(getRequest);
             if (response.isSuccessful() && response.body() != null) {
-                System.out.println(response.body().string());
+
+                User retrievedUser = deserializeUserResponse(response.body().string());
+                System.out.printf("  Name: %s\n  "
+                                + "First Name: %s\n  "
+                                + "Last name: %s\n  "
+                                + "Email: %s\n  "
+                                + "Password: %s\n  "
+                                + "Phone: %s\n  "
+                                + "User Status: %s\n",
+                        user, retrievedUser.getName(), retrievedUser.getFirstName(),
+                        retrievedUser.getLastName(), retrievedUser.getEmail(),
+                        retrievedUser.getPassword(), retrievedUser.getPhone(),
+                        retrievedUser.getUserStatus());
+
             } else {
                 System.out.println("Unexpected code " + response);
             }
@@ -94,12 +108,12 @@ public class Task3 {
                 String responseString = response.body().string();
 
                 System.out.println("*Deserialization http response to Java Pet model --> done");
-                List<Pet> petList = deserializeResponse(responseString);
+                List<Pet> petList = deserializePetResponse(responseString);
                 Map<Long, String> tupleTask3 = onCreateHastMapFromPetList(petList);
 
                 System.out.println("Listing pet names sold with format {id, name} by using a HashMap object");
                 System.out.println(tupleTask3);
-                System.out.println("\nBeauty hashmap output: ");
+                System.out.println("\nPretty format hashmap output: ");
                 for (Map.Entry<Long, String> m : tupleTask3.entrySet()) {
                     System.out.printf("{id: %s , name: %s}%n", m.getKey(), m.getValue());
                 }
@@ -121,14 +135,23 @@ public class Task3 {
         System.exit(0);
     }
 
-    private List<Pet> deserializeResponse(String respose) {
+    private List<Pet> deserializePetResponse(String response) {
 
         Gson gson = new Gson();
 
         Type petType = new TypeToken<List<Pet>>() {
         }.getType();
 
-        return gson.fromJson(respose, petType);
+        return gson.fromJson(response, petType);
+    }
+
+    private User deserializeUserResponse(String response) {
+        Gson gson = new Gson();
+
+        //Type userType = new TypeToken<User>() {
+        // }.getType();
+
+        return gson.fromJson(response, User.class);
     }
 
     private Map<Long, String> onCreateHastMapFromPetList(List<Pet> petList) {

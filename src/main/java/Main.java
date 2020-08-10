@@ -45,13 +45,13 @@ public class Main {
 
                     // Fill in the details for a new user
                     JSONObject newUserJson = new JSONObject();
-                    newUserJson.put("id", 5);
-                    newUserJson.put("username", "user377");
-                    newUserJson.put("firstName", "Joker377");
-                    newUserJson.put("lastName", "Joker378");
-                    newUserJson.put("email", "joker@joker.com");
-                    newUserJson.put("password", "user377");
-                    newUserJson.put("phone", "377");
+                    newUserJson.put("id", 46);
+                    newUserJson.put("username", "Linus");
+                    newUserJson.put("firstName", "Benedict");
+                    newUserJson.put("lastName", "Torvalds");
+                    newUserJson.put("email", "linus3@linux.com");
+                    newUserJson.put("password", "git");
+                    newUserJson.put("phone", "123456789");
                     newUserJson.put("userStatus", 0);
 
                     Task3 task3 = new Task3();

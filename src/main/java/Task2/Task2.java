@@ -99,11 +99,14 @@ public class Task2 {
     }
 
     public void onCheckFirstAutomationProcess() {
-        System.out.println("Checking for the first automation process...\n\n");
-        // wiki vars
+        System.out.println("Checking for the first automation process...");
+
+        // Arraylist for managing the data
         List<String> headersList = new ArrayList<>();
+        List<String> phraseList = new ArrayList<>();
         List<String> paragraphList = new ArrayList<>();
 
+        // Get the info from website
         String xpath = "//div[@id=\"mw-content-text\"]//*";
         List<WebElement> webElements = driver.findElements(By.xpath(xpath));
         for (WebElement we : webElements) {
@@ -112,14 +115,15 @@ public class Task2 {
             else if (we.getTagName().equals("p")) paragraphList.add(we.getText());
         }
 
-        System.out.println("Headers");
-        System.out.println(headersList);
-        System.out.println("------------------");
-
+        // Clasify info
         for (String str : paragraphList) {
-            if (str.contains("1960")) System.out.println(str);
-            else if (str.contains("automático") && str.contains("1801")) System.out.println(str);
+            if (str.contains("1960")) phraseList.add(str);
+            else if (str.contains("automático") && str.contains("1801")) phraseList.add(str);
         }
+
+        // Display
+        System.out.printf("\n%s:\n  %s",headersList.get(1),phraseList.get(0));
+        System.out.printf("\n%s:\n  %s",headersList.get(2),phraseList.get(1));
 
         // The driver get closed due to last execution
         driver.close();
