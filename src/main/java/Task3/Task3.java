@@ -115,7 +115,7 @@ public class Task3 {
                 System.out.println(tupleTask3);
                 System.out.println("\nPretty format hashmap output: ");
                 for (Map.Entry<Long, String> m : tupleTask3.entrySet()) {
-                    System.out.printf("{id: %s , name: %s}%n", m.getKey(), m.getValue());
+                    System.out.printf("{id: %s , name: %s}\n", m.getKey(), m.getValue());
                 }
                 return tupleTask3;
             } else {
