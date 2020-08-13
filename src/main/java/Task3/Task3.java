@@ -73,7 +73,7 @@ public class Task3 {
                                 + "Password: %s\n  "
                                 + "Phone: %s\n  "
                                 + "User Status: %s\n",
-                        user, retrievedUser.getName(), retrievedUser.getFirstName(),
+                        retrievedUser.getName(), retrievedUser.getFirstName(),
                         retrievedUser.getLastName(), retrievedUser.getEmail(),
                         retrievedUser.getPassword(), retrievedUser.getPhone(),
                         retrievedUser.getUserStatus());
